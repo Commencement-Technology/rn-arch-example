@@ -7,11 +7,11 @@ export class ToDoItemController extends ControllerBase {
     This could grow really fast, so you may have multiple controllers that responsible for certain domains
     */
 
-    addToDoItemService: AddTodoItemInterface
-    changeItemStatusService: ChangeItemStatusInterface
-    deleteAllService: DeleteAllInterface
-    getAllItemsService: GetAllItemsInterface
-    saveToFileService: SaveToFileInterface
+    private addToDoItemService: AddTodoItemInterface
+    private changeItemStatusService: ChangeItemStatusInterface
+    private deleteAllService: DeleteAllInterface
+    private getAllItemsService: GetAllItemsInterface
+    private saveToFileService: SaveToFileInterface
 
     constructor(
         addToDoItemService: AddTodoItemInterface,

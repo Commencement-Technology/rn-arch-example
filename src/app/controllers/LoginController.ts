@@ -6,7 +6,7 @@ export class LoginController extends ControllerBase {
     Controllers are to orginize services based into categories. A service can be used in different controllers
     */
 
-    loginService: LoginInterface
+    private loginService: LoginInterface
 
     constructor(loginService: LoginInterface) {
         super()

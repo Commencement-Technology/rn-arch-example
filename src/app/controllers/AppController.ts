@@ -7,7 +7,7 @@ export class AppController extends ControllerBase {
     We only import interfaces here to detach controller from actual implementation of our repositories and services.
     */
 
-    initializeService: InitializeInterface
+    private initializeService: InitializeInterface
 
     constructor(initializeService: InitializeInterface) {
         super()
