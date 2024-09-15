@@ -8,7 +8,7 @@ type AuthProps = {
 }
 
 function Auth({ navigateToHome }: AuthProps): React.JSX.Element {
-    const { username, setUsername, password, setPassword, login } = useLogin({ navigateToHome })
+    const { username, setUsername, password, isLogginIn, setPassword, login } = useLogin({ navigateToHome })
     return (
         <View
             style={styles.container}>
@@ -23,6 +23,7 @@ function Auth({ navigateToHome }: AuthProps): React.JSX.Element {
                 value={password}
                 setValue={setPassword} />
             <Button
+                disabled={isLogginIn}
                 title="Login"
                 onPress={login} />
         </View>

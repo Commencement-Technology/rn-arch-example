@@ -6,6 +6,7 @@ import { FilesystemRepository } from "./repositories/FilesystemRepository"
 import { GeolocationRepository } from "./repositories/GeolocationRepository"
 import { NetInfoRepository } from "./repositories/NetInfoRepository"
 import { NetworkRepository } from "./repositories/NetworkRepository"
+import { PermissionRepository } from "./repositories/PermissionRepository"
 import { AddTodoItem } from "./services/AddTodoItem"
 import { ChangeItemStatus } from "./services/ChangeItemStatus"
 import { DeleteAll } from "./services/DeleteAll"
@@ -27,19 +28,20 @@ const databaseRepo = new DatabaseRepository()
 const networkRepo = new NetworkRepository()
 const filesystemRepo = new FilesystemRepository()
 const geolocationRepo = new GeolocationRepository()
-const netInforepo = new NetInfoRepository()
+const netInfoRepo = new NetInfoRepository()
+const permissionRepo = new PermissionRepository()
 
 //General services
 const haversineService = new Haversine()
 
 
 //Application services
-const addTodoItemService = new AddTodoItem(databaseRepo, geolocationRepo)
+const addTodoItemService = new AddTodoItem(databaseRepo, geolocationRepo, permissionRepo)
 const changeItemStatusService = new ChangeItemStatus(databaseRepo)
 const deleteAllService = new DeleteAll(databaseRepo)
-const getAllItemsService = new GetAllItems(databaseRepo, haversineService, geolocationRepo)
+const getAllItemsService = new GetAllItems(databaseRepo, haversineService, geolocationRepo, permissionRepo)
 const initializeService = new Intialize(databaseRepo)
-const loginService = new Login(networkRepo, netInforepo)
+const loginService = new Login(networkRepo, netInfoRepo)
 const saveToFileService = new SaveToFile(databaseRepo, filesystemRepo)
 
 

@@ -59,11 +59,17 @@ export const useToDoList = () => {
 
     const toggleStatus = useCallback(async (id: number, index: number, currentStatus: boolean) => {
         const { isOk, error, response } = await toDoItemController.changeItemStatus(id, !currentStatus)
-        if (isOk)
+        if (isOk) {
+            const toDoListItem = getToDoListItem(response!)
             setItems(state => Object.assign([], state,
                 {
-                    [index]: getToDoListItem(response!)
+                    [index]: {
+                        ...state[index],
+                        completed: toDoListItem.completed,
+                        completionDate: toDoListItem.completionDate
+                    }
                 }))
+        }
         else
             alert(error!)
     }, [])

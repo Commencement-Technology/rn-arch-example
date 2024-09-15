@@ -7,7 +7,12 @@ type useToDoItemInputProps = {
 export const useToDoItemInput = ({ addItem }: useToDoItemInputProps) => {
     const [value, setValue] = useState<string>("")
 
-    const onSubmit = () => addItem(value)
+    const onSubmit = () => {
+        if (value !== '') {
+            addItem(value)
+            setValue('')
+        }
+    }
 
     return {
         onSubmit,

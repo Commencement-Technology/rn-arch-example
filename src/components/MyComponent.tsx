@@ -1,0 +1,3 @@
+/*
+You can have components here that will be shared across multiple features
+*/

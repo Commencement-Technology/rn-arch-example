@@ -1,14 +1,16 @@
 import { TodoItem } from "../entities/TodoItem"
-import { DatabaseRepoInterface, GeolocationRepoInterface } from "../repositories/interfaces/RepositoryInterfaces"
+import { DatabaseRepoInterface, GeolocationRepoInterface, PermissionRepoInterface } from "../repositories/interfaces/RepositoryInterfaces"
 import { AddTodoItemInterface } from "./interfaces/ApplicationServiceInterfaces"
 
 export class AddTodoItem implements AddTodoItemInterface {
     databaseRepo: DatabaseRepoInterface
     geolocationRepo: GeolocationRepoInterface
+    permissionRepo: PermissionRepoInterface
 
-    constructor(databaseRepo: DatabaseRepoInterface, geolocationRepo: GeolocationRepoInterface) {
+    constructor(databaseRepo: DatabaseRepoInterface, geolocationRepo: GeolocationRepoInterface, permissionRepo: PermissionRepoInterface) {
         this.databaseRepo = databaseRepo
         this.geolocationRepo = geolocationRepo
+        this.permissionRepo = permissionRepo
     }
 
     async execute(value: string): Promise<TodoItem> {
@@ -18,6 +20,10 @@ export class AddTodoItem implements AddTodoItemInterface {
        
         */
 
+        //Getting location permission
+
+        await this.permissionRepo.requestLocationPermission()
+
         // Getting current coordinates from geolocation repository
         const coordinates = await this.geolocationRepo.getCurrentPositionCoordinates()
 
@@ -25,8 +31,12 @@ export class AddTodoItem implements AddTodoItemInterface {
         const todoItem = new TodoItem(null, value, coordinates.latitude, coordinates.longitude, false)
 
         // Creating todoItem in database repository. Also returning created item with id property 
-        return await this.databaseRepo.create(todoItem)
+        const createdItem = await this.databaseRepo.create(todoItem)
 
+        //Assume distance is 0 for current position
+        createdItem.setDistanceToCurrentPosition(0)
+        
+        return createdItem
         /*
 
         Notice that the service only import entities and interfaces. 

@@ -1,4 +1,4 @@
-import { DatabaseRepoInterface, GeolocationRepoInterface } from "../repositories/interfaces/RepositoryInterfaces"
+import { DatabaseRepoInterface, GeolocationRepoInterface, PermissionRepoInterface } from "../repositories/interfaces/RepositoryInterfaces"
 import { GetAllItemsInterface } from "./interfaces/ApplicationServiceInterfaces"
 import { HaversineServiceInterface } from "./interfaces/GeneralServiceInterfaces"
 
@@ -6,10 +6,12 @@ export class GetAllItems implements GetAllItemsInterface {
     databaseRepo: DatabaseRepoInterface
     haversineService: HaversineServiceInterface
     geolocationRepo: GeolocationRepoInterface
-    constructor(databaseRepo: DatabaseRepoInterface, haversineService: HaversineServiceInterface, geolocationRepo: GeolocationRepoInterface) {
+    permissionRepo: PermissionRepoInterface
+    constructor(databaseRepo: DatabaseRepoInterface, haversineService: HaversineServiceInterface, geolocationRepo: GeolocationRepoInterface, permissionRepo: PermissionRepoInterface) {
         this.databaseRepo = databaseRepo
         this.haversineService = haversineService
         this.geolocationRepo = geolocationRepo
+        this.permissionRepo = permissionRepo
     }
 
     async execute() {
@@ -18,7 +20,7 @@ export class GetAllItems implements GetAllItemsInterface {
         This service returns all the todos from our database. 
         It also calculates the distance from our current position to the position of when each individual todoItem was created.
         */
-
+        await this.permissionRepo.requestLocationPermission()
         const [coordinates, todoItems] = await Promise.all([
             //We can send these two requests to APIs in parallel to speed up the process
             this.geolocationRepo.getCurrentPositionCoordinates(),

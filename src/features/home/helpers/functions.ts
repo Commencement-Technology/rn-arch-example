@@ -1,5 +1,5 @@
 import { TodoItem } from "../../../app/entities/TodoItem"
-import { formatTime } from "../../../helpers/time_converter"
+import { formatTime } from "../../../helpers/timeConverter"
 import { ToDoListItem } from "../hooks/useToDoList"
 
 // Functions should be feature specific (otherwise they should be in global helpers folder)

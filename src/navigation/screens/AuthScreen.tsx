@@ -12,7 +12,8 @@ function AuthScreen({ navigation }: AuthScreenProps): React.JSX.Element {
     const navigateToHome = () => navigation.navigate('Home')
 
     return (
-        <View style={styles.container}>
+        <View
+            style={styles.container}>
             <Auth
                 navigateToHome={navigateToHome} />
         </View>

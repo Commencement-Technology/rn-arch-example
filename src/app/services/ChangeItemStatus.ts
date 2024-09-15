@@ -1,3 +1,4 @@
+import { TodoItem } from "../entities/TodoItem"
 import { DatabaseRepoInterface } from "../repositories/interfaces/RepositoryInterfaces"
 import { ChangeItemStatusInterface } from "./interfaces/ApplicationServiceInterfaces"
 
@@ -7,7 +8,7 @@ export class ChangeItemStatus implements ChangeItemStatusInterface {
         this.databaseRepo = databaseRepo
     }
 
-    async execute(id: number, completed: boolean): Promise<void> {
+    async execute(id: number, completed: boolean): Promise<TodoItem> {
         /*
         This service updates "completed" status of the todo with the given id in the database.
 
@@ -28,7 +29,8 @@ export class ChangeItemStatus implements ChangeItemStatusInterface {
             todoItem.makeNotCompleted()
 
         await this.databaseRepo.update(todoItem)
-
+        
+        return todoItem
         /*  
             We could have updateStatus method in repository, that would only accept completed and completionTime arguments, however current way is more universal.
 

@@ -33,23 +33,23 @@ export class ToDoItemController extends ControllerBase {
     */
 
     addTodoItem(value: string): Promise<Response<TodoItem>> {
-        return super.execute(this.addToDoItemService.execute.bind(this, value))
+        return super.execute(() => this.addToDoItemService.execute(value))
     }
 
-    changeItemStatus(id: number, completed: boolean): Promise<Response<void>> {
-        return super.execute(this.changeItemStatusService.execute.bind(this, id, completed))
+    changeItemStatus(id: number, completed: boolean): Promise<Response<TodoItem>> {
+        return super.execute(() => this.changeItemStatusService.execute(id, completed))
     }
 
     deleteAll(): Promise<Response<void>> {
-        return super.execute(this.deleteAllService.execute)
+        return super.execute(() => this.deleteAllService.execute())
     }
 
     getAllItems(): Promise<Response<TodoItem[]>> {
-        return super.execute(this.getAllItemsService.execute)
+        return super.execute(() => this.getAllItemsService.execute())
     }
 
     saveToFiles(): Promise<Response<void>> {
-        return super.execute(this.saveToFileService.execute)
+        return super.execute(() => this.saveToFileService.execute())
     }
 
 }

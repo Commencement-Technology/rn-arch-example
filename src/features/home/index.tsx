@@ -25,22 +25,22 @@ function Home({ }: HomeProps): React.JSX.Element {
     return (
         <View
             style={styles.container}>
-            <Text>To do list</Text>
             <FlatList
+                contentContainerStyle={styles.list}
                 refreshing={loading}
                 onRefresh={loadItems}
                 ListHeaderComponent={
                     <ToDoItemInput addItem={addItem} />
                 }
-                ListEmptyComponent={
-                    <>
+                ListFooterComponent={
+                    <View>
                         <Button
                             title='Save to file'
                             onPress={saveToFile} />
                         <Button
                             title='Delete all items'
                             onPress={deleteAllItems} />
-                    </>
+                    </View>
                 }
                 data={items}
                 renderItem={renderItem}
@@ -50,7 +50,12 @@ function Home({ }: HomeProps): React.JSX.Element {
 }
 
 const styles = StyleSheet.create({
-    container: {},
+    container: {
+        flex: 1
+    },
+    list: {
+        flex: 1
+    },
 })
 
 export default Home

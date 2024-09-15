@@ -17,7 +17,6 @@ export class DatabaseRepository implements DatabaseRepoInterface {
         try {
             await this.db.executeAsync(
                 'CREATE TABLE IF NOT EXISTS todos (id INTEGER PRIMARY KEY NOT NULL, value TEXT, latitude REAL, longitude REAL, completionTime INT, completed BOOLEAN)')
-            return
         }
         catch (er) {
             throw new Error('Unable to initialize database')
@@ -30,7 +29,7 @@ export class DatabaseRepository implements DatabaseRepoInterface {
         try {
             const { insertId } = await this.db.executeAsync(
                 'INSERT INTO todos (id, value, latitude, longitude, completionTime, completed) VALUES (?,?,?,?,?,?)',
-                [value, latitude, longitude, completionTime, completed, id])
+                [id, value, latitude, longitude, completionTime, completed])
             if (insertId !== undefined)
                 return new TodoItem(insertId, value, latitude, longitude, completed, completionTime)
             else
@@ -92,7 +91,7 @@ export class DatabaseRepository implements DatabaseRepoInterface {
             return result
         }
         catch (er) {
-            throw new Error('Unable to delete config')
+            throw new Error('Unable to get all todos')
         }
     }
 

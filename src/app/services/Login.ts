@@ -10,7 +10,7 @@ export class Login implements LoginInterface {
         this.netInfoRepo = netInfoRepo
     }
 
-    async execute(password: string, login: string) {
+    async execute(login: string, password: string) {
         /*
         This service authenticates user in our app. Before sending request to http server it checks if the device can reach internet.
 
@@ -20,7 +20,7 @@ export class Login implements LoginInterface {
 
         const isInternetReachable = await this.netInfoRepo.checkConnection()
         if (isInternetReachable) {
-            return this.networkRepo.loginRequest(login, password)
+            await this.networkRepo.loginRequest(login, password)
         }
         else
             throw new Error('No internet')

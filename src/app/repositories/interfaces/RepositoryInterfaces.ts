@@ -26,3 +26,7 @@ export interface NetInfoRepoInterface {
 export interface NetworkRepoInterface {
     loginRequest: (login: string, password: string) => Promise<boolean>
 }
+
+export interface PermissionRepoInterface {
+    requestLocationPermission: () => Promise<void>
+}

@@ -5,7 +5,7 @@ export interface AddTodoItemInterface {
 }
 
 export interface ChangeItemStatusInterface {
-    execute: (id: number, completed: boolean) => Promise<void>
+    execute: (id: number, completed: boolean) => Promise<TodoItem>
 }
 
 export interface DeleteAllInterface {
@@ -17,7 +17,7 @@ export interface GetAllItemsInterface {
 }
 
 export interface LoginInterface {
-    execute: (login: string, password: string) => Promise<boolean>
+    execute: (login: string, password: string) => Promise<void>
 }
 
 export interface SaveToFileInterface {

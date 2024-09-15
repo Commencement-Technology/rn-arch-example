@@ -19,7 +19,7 @@ export class AppController extends ControllerBase {
     */
 
     initialize(): Promise<Response<void>> {
-        return super.execute(this.initializeService.execute)
+        return super.execute(() => this.initializeService.execute())
     }
 
 }

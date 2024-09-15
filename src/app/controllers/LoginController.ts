@@ -14,8 +14,8 @@ export class LoginController extends ControllerBase {
     }
 
 
-    login(login: string, password: string): Promise<Response<boolean>> {
-        return super.execute(this.loginService.execute.bind(this, login, password))
+    login(login: string, password: string): Promise<Response<void>> {
+        return super.execute(() => this.loginService.execute(login, password))
     }
 
 }
