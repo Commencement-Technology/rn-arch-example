@@ -12,7 +12,7 @@ function Auth({ navigateToHome }: AuthProps): React.JSX.Element {
     return (
         <View
             style={styles.container}>
-            <Image source={require('../../assest/nature.jpg')}
+            <Image source={require('../../assets/nature.jpg')}
                 style={styles.image} />
             <Input
                 label="Username"
