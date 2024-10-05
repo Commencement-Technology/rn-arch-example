@@ -1,5 +1,5 @@
 import React from "react"
-import { View, StyleSheet, Button } from "react-native"
+import { View, StyleSheet, Button, Image } from "react-native"
 import { useLogin } from "./hooks/useLogin"
 import Input from "./components/Input"
 
@@ -12,6 +12,8 @@ function Auth({ navigateToHome }: AuthProps): React.JSX.Element {
     return (
         <View
             style={styles.container}>
+            <Image source={require('../../assest/nature.jpg')}
+                style={styles.image} />
             <Input
                 label="Username"
                 isPassword={false}
@@ -32,7 +34,16 @@ function Auth({ navigateToHome }: AuthProps): React.JSX.Element {
 
 const styles = StyleSheet.create({
     container: {
+        justifyContent: 'center',
+        flex: 1
     },
+    image: {
+        width: 100,
+        height: 100,
+        alignSelf: 'center',
+        borderRadius: 20,
+        marginBottom: 20
+    }
 })
 
 export default Auth
