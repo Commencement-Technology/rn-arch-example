@@ -25,3 +25,5 @@ State Managment - [Redux + Toolkit](https://react-redux.js.org/)
 Database - SQLite - [op-sqlite](https://github.com/OP-Engineering/op-sqlite)
 
 [react-native-netinfo](https://github.com/react-native-netinfo/react-native-netinfo), [react-native-fs](https://github.com/itinance/react-native-fs), [react-native-geolocation](https://github.com/michalchudziak/react-native-geolocation)
+
+Check the [article](https://medium.com/@andrei.lomtev/architecture-pattern-for-react-native-applications-906fff65ebf8)
